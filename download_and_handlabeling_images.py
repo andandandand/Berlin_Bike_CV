@@ -1,7 +1,3 @@
-# %pip install mercantile
-# %pip install mapbox_vector_tile
-# %pip install vt2geojson
-
 import mercantile, mapbox_vector_tile
 import requests, json, os
 from vt2geojson.tools import vt_bytes_to_geojson
@@ -10,6 +6,7 @@ from pathlib import Path
 import tkinter as tk
 from PIL import Image, ImageTk
 import io
+from dotenv import load_dotenv
 
 ### Define Bounding Box
 
@@ -24,8 +21,9 @@ west, south, east, north = [
 
 ### Setup for image download
 
-# Mapillary access token
-access_token = {"insert your own Mapillary API token"}
+# Mapillary access token, define it in a .env file 
+load_dotenv()
+access_token = os.getenv("MAPILLARY_TOKEN")
 
 # vector tile endpoints
 tile_coverage = "mly1_public"
